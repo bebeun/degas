@@ -1,0 +1,16 @@
+<% provide(:title, "Fiche") %>
+<h2>Voici la fiche...</h2><br/>
+
+<%= @painting.inspect.to_s %><br/>
+Liste des expositons où cette fiche apparaît : 
+
+<ul>
+	<% @painting.exhibitions.each do |exhibition| %>
+		<li><%= render 'exhibitions/show', :exhibition => exhibition %> </li>
+	<% end %>
+</ul>
+
+<%= link_to "Modifier la fiche ci-dessus", url_for(action: 'edit', id: @painting)%><br/>
+<%= button_to "Détruire la fiche ci-dessus", {action: 'destroy', id: @painting}, method: :delete, data: { confirm: "Are you sure?" } %><br/>
+
+

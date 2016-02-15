@@ -1,0 +1,6 @@
+<%= exhibition.inspect.to_s %><br/>
+<%= link_to "Voir l'exposition de plus près...", exhibition %><br/>
+<%= link_to "Modifier l'exposition ci-dessus", url_for(controller: 'exhibitions', action: 'edit', id: exhibition)%><br/>
+<%= button_to "Détruire l'expo ci-dessus", {action: 'destroy', controller: 'exhibitions', id: exhibition}, method: :delete, data: { confirm: "Are you sure?" } %><br/>
+
+

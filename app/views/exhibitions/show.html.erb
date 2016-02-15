@@ -1,0 +1,16 @@
+<% provide(:title, "Expo") %>
+<h2>Voici l'expo...</h2><br/>
+
+<%= @exhibition.inspect.to_s %><br/>
+Liste des fiches exposées dans cette expo : 
+<ul>
+	<% @exhibition.paintings.each do |painting| %>
+		<li><%= render 'paintings/show', :painting => painting %> </li>
+	<% end %>
+</ul>
+
+
+<%= link_to "Modifier l'expo ci-dessus", url_for(action: 'edit', id: @exhibition)%><br/>
+<%= button_to "Détruire l'expo ci-dessus", {action: 'destroy', id: @exhibition}, method: :delete, data: { confirm: "Are you sure?" } %><br/>
+
+

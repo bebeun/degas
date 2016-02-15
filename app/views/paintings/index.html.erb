@@ -1,0 +1,10 @@
+<% provide(:title, "Toutes les fiches") %>
+<h2>Voici toutes les fiches...</h2>
+<ul>
+	<% @paintings.each do |painting| %>
+		<li>
+			<%= render 'show', :painting => painting %> 
+		</li>
+	<% end %>
+</ul>
+

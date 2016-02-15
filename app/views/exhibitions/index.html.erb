@@ -1,0 +1,10 @@
+<% provide(:title, "Toutes les expositions") %>
+<h2>Voici toutes les expositions...</h2>
+<ul>
+	<% @exhibitions.each do |exhibition| %>
+		<li>
+			<%= render 'exhibitions/show', :exhibition => exhibition %> 
+		</li>
+	<% end %>
+</ul>
+

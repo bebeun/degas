@@ -1,0 +1,10 @@
+<% provide(:title, "Tous les musées") %>
+<h2>Voici tous les musées...</h2>
+<ul>
+	<% @museums.each do |museum| %>
+		<li>
+			<%= render 'show', :museum => museum %> 
+		</li>
+	<% end %>
+</ul>
+

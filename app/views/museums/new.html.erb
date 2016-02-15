@@ -1,0 +1,35 @@
+<% provide(:title, "Nouvelle musée") %>
+<h2>Création d'un nouveau musée...</h2>
+
+<%= form_for @museum do |f| %>
+
+		<% if @museum.errors.any? %>
+			<%= pluralize(@museum.errors.count, "error") %> prohibited this museum from being created:
+			<ul>
+				<% @museum.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		<% end %>
+		
+		<div class="field">
+			"Nom du musée"			
+			<%= f.label :name %><%= f.text_area :name %>
+			
+		</div>
+		
+		<div class="field">
+			"Ville du musée"			
+			<%= f.label :city %><%= f.text_area :city %>
+			
+		</div>
+		
+		<div class="field">
+			"Remarque éventuelle"			
+			<%= f.label :remark %><%= f.text_area :remark %>
+			
+		</div>
+
+	<%= f.submit "Créer le musée" %>
+<% end %>
+
