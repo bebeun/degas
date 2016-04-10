@@ -12,72 +12,91 @@
 			</ul>
 		<% end %>
 		
-		<div class="field">
-			"Titre de l'oeuvre"
-			<%= f.label :title %>
-			<%= f.text_area :title %>
-		</div>
-		
-		<div class="field">
-			"Numéro de l'oeuvre (référence interne Word)"			
-			<%= f.number_field :number %>
-			<%= f.label :number %>
-		</div>
-		
-		<div class="field">
-			"L'oeuvre a t'elle une année précise ?"
+					<div class="field form-group">
+				<%= f.label(:title, "Titre de l'oeuvre", class: "col-sm-4 control-label") %>
+				<div class="col-sm-8">		
+					<%= f.text_field :title, class: "form-control" %>
+				</div >
+			</div >
+			<br/><br/>
+			
+			<div class="field form-group">
+				<%= f.label(:number, "Numéro de l'oeuvre (référence interne Word)", class: "col-sm-4 control-label"  ) %>	
+				<div class="col-sm-8">			
+					<%= f.number_field :number, class: "form-control"%>
+				</div >
+			</div>
+			<br/><br/>
 
-			<%= f.radio_button :has_accurate_date, 'true' %> 
-			<%= label :has_accurate_date, 'Oui' %>
-			<%= f.radio_button :has_accurate_date, 'false' %> 
-			<%= label :has_accurate_date, 'Non' %>
-		</div>
-		
-		<div class="field">
-			"Si oui, est ce une date Circa ?"
+			<div class="field form-group">
+				<%= f.label(:has_accurate_date, "Datation de l'oeuvre :", class: "col-sm-4 control-label"  ) %>
+	 			<div class="col-sm-8 btn-group" data-toggle="buttons">
+					<%= f.label(:has_accurate_date, "Date précise", class: "btn btn-primary col-sm-6 "  ) do %>	
+						<%= f.radio_button :has_accurate_date, 'true' %> Année
+					<% end %>
+					<%= f.label(:has_accurate_date, "Période", class: "btn btn-primary col-sm-6"  ) do %>	
+						<%= f.radio_button :has_accurate_date, 'false' %> Période
+					<% end %>
+	  			</div>
+			</div>
+			<br/><br/>
 
-			<%= f.radio_button :circa, 'true'%> 
-			<%= label :circa, 'Oui' %>
-			<%= f.radio_button :circa, 'false' %> 
-			<%= label :circa, 'Non' %>
-		</div>
-		
-		<div class="field">
-			<%= f.label "Date de l\'oeuvre" %> <br />
-			<%= f.select :year, (1860..1900), :prompt=>"Date de l'oeuvre..." %> <br />
-		</div>		
-		
-		<div class="field">
-			<%= f.label "Periode de l\'oeuvre" %> <br />
-			<%= f.select :period, ["1850-1860","1860-1870","1870-1880","1880-1890","1890-1900","1900-1910"], :prompt=>"Date de l'oeuvre..." %> <br />
-		</div>
-		
-		<div class="field">
-			<%= f.label "Technique et support de l\'oeuvre" %> <br />
-			<%= f.select :technique,["Huile sur toile", "Huile sur papier", "Huile sur panneau", "Huile sur carton", "Huile sur autre", "Pastel sur papier", "Pastel sur autre", "Mixte sur toile", "Mixte sur papier", "Mixte sur autre", "Pastel et fusain"] \
-		, :prompt=>"Technique et support de l\'oeuvre..." %> <br />
-		</div>
 
-		<div class="field">
-			<%= f.label "Cachet" %> <br />
-			<%= f.select :cachet, ["Vente Degas", "Atelier", "Invisible"] , :prompt=>"Cachet..." %> <br />
-		</div>
-		
-		<div class="field">
-			<%= f.label "Localisation" %> <br />
-			<%= f.select :localisation, ["Musée", "Collection Particulière", "Inconnu"], :prompt=>"Localisation..." %> <br />
-		</div>
-		
-		<div class="field">
-			<%= f.label "Musée" %> <br />
-			<%= f.collection_select(:museum_id, Museum.all, :id, :full_display, :prompt=>"Sélectionner le musée...")  %> <br />	
-		</div>
-		
-		
-		<div class="field">
-			<%= f.label "Expositions de l'oeuvre (Mutliple select possible)" %> <br />
-			<%= f.collection_select(:exhibition_ids, Exhibition.all, :id, :full_display, {}, {multiple: true})  %> <br />	
-		</div>
+				<div class="field form-group">
+					<%= f.label(:circa, "Si datation sur une année :", class: "col-sm-4 control-label"  ) %>
+		 			<div class="col-sm-8 btn-group" data-toggle="buttons">
+						<%= f.label(:circa, "Date précise", class: "btn btn-primary col-sm-6 "  ) do %>	
+							<%= f.radio_button :circa, 'true' %> Année circa
+						<% end %>
+						<%= f.label(:circa, "Période", class: "btn btn-primary col-sm-6"  ) do %>	
+							<%= f.radio_button :circa, 'false' %> Année précise
+						<% end %>
+		  			</div>
+				</div>
+				<br/><br/>
+				
+				<div class="field form-group">
+					<%= f.label(:year, "Date de l'oeuvre", class: "col-sm-4 control-label"  ) %>	
+					<div class="col-sm-8"><%= f.select :year, (1860..1900), {prompt: "Date de l'oeuvre..."}, {class: "form-control"}  %></div>
+				</div>	
+				<br/><br/>	
+
+				<div class="field form-group">
+					<%= f.label(:period, "Période de l'oeuvre", class: "col-md-4 control-label"  ) %>	
+					<div class="col-sm-8"><%= f.select :period, ["1850-1860","1860-1870","1870-1880","1880-1890","1890-1900","1900-1910"], {prompt: "Période de l'oeuvre..."}, {class: "form-control"}%></div>
+				</div>
+				<br/><br/>
+				
+				<div class="field form-group">
+					<%= f.label(:technique, "Technique et support de l'oeuvre", class: "col-md-4 control-label"  ) %>	
+					<div class="col-sm-8"><%= f.select :technique,["Huile sur toile", "Huile sur papier", "Huile sur panneau", "Huile sur carton", "Huile sur autre", "Pastel sur papier", "Pastel sur autre", "Mixte sur toile", "Mixte sur papier", "Mixte sur autre", "Pastel et fusain"] \
+				, {prompt: "Technique et support de l'oeuvre..."}, {class: "form-control"} %> </div>
+				</div>
+				<br/><br/>
+
+
+			<div class="field form-group">
+				<%= f.label(:cachet, "Cachet", class: "col-md-4 control-label" ) %>	
+				<div class="col-sm-8"><%= f.select :cachet, ["Vente Degas", "Atelier", "Invisible"] , {prompt: "Cachet..."}, {class: "form-control"}  %></div> 
+			</div>
+			<br/><br/>
+
+			<div class="field form-group">
+				<%= f.label(:localisation, "Localisation", class: "col-md-4 control-label" ) %>	
+				<div class="col-sm-8"><%= f.select :localisation, ["Musée", "Collection Particulière", "Inconnu"], {prompt: "Localisation..."}, {class: "form-control"} %> </div>
+			</div>
+			<br/><br/>
+
+			<div class="field form-group">
+				<%= f.label(:museum_id, "Musée", class: "col-md-4 control-label" ) %>	
+				<div class="col-sm-8"><%= f.collection_select(:museum_id, Museum.all, :id, :full_display, {prompt: "Sélectionner le musée..."}, {class: "form-control"})  %></div>
+			</div>
+			<br/><br/>
+
+			<div class="field form-group">
+				<%= f.label(:museum_id, "Expositions de l'oeuvre (Choix multiple possible)", class: "col-md-4 control-label" ) %>	
+				<div class="col-sm-8"><%= f.collection_select(:exhibition_ids, Exhibition.all, :id, :full_display, {}, {multiple: true, class: "form-control"})  %> </div>
+			</div>
 
 	<%= f.submit "Mettre à jour la fiche", class: "btn btn-default" %>
 <% end %>

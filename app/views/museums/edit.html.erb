@@ -12,25 +12,31 @@
 			</ul>
 		<% end %>
 		
-		<div class="field">
-			"Nom du musée"			
-			<%= f.label :name %><%= f.text_area :name %>
-			
-		</div>
-		
-		<div class="field">
-			"Ville du musée"			
-			<%= f.label :city %><%= f.text_area :city %>
-			
-		</div>
-		
-		<div class="field">
-			"Remarque éventuelle"			
-			<%= f.label :remark %><%= f.text_area :remark %>
-			
-		</div>
+		<div class="field form-group">
+			<%= f.label(:name, "Nom du musée", class: "col-sm-4 control-label") %>
+			<div class="col-sm-8">		
+				<%= f.text_field :name, class: "form-control" %>
+			</div >
+		</div >
+		<br/><br/>
 
-	<%= f.submit "Mettre à jour le musée" %>
+		<div class="field form-group">
+			<%= f.label(:city, "Ville du musée", class: "col-sm-4 control-label") %>
+			<div class="col-sm-8">		
+				<%= f.text_field :city, class: "form-control" %>
+			</div >
+		</div >
+		<br/><br/>
+		
+		<div class="field form-group">
+			<%= f.label(:remark, "Remarque éventuelle", class: "col-sm-4 control-label") %>
+			<div class="col-sm-8">		
+				<%= f.text_field :remark, class: "form-control" %>
+			</div >
+		</div >
+		<br/><br/>
+
+	<%= f.submit "Modifier le musée", class: "btn btn-primary" %>
 <% end %>
 
 <%= link_to "Abandonner l'édition de ce musée", url_for(action: 'show', id: @museum)%><br/>

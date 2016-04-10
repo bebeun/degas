@@ -10,7 +10,7 @@ class ExhibitionsController < ApplicationController
 	def create
 		@exhibition = Exhibition.new(exhibition_params)
 		if @exhibition.save
-			flash[:success] = "L'exposition a été correctement crée à jour!"
+			flash[:success] = "L'exposition a été correctement !"
 			redirect_to @exhibition
 		else
 			render 'new'

@@ -1,24 +1,29 @@
 <% provide(:title, "Musée") %>
 <h2>Voici le musée...</h2><br/>
 
-<%= @museum.inspect.to_s %><br/>
+Nom du musée : <%= @museum.name %><br/>
+Ville du musée : <%= @museum.city %><br/>
+<% !@museum.remark.nil? ? "Remarque :  "+@museum.remark : "" %><br/>
+
+<% if @museum.exhibitions.any? %>
 Liste des expositons que ce musée a hébergée : 
+	<ul>
+		<% @museum.exhibitions.each do |exhibition| %>
+			<li><%= render 'exhibitions/show', :exhibition => exhibition %> </li>
+		<% end %>
+	</ul>
+<% end %>
 
-<ul>
-	<% @museum.exhibitions.each do |exhibition| %>
-		<li><%= render 'exhibitions/show', :exhibition => exhibition %> </li>
-	<% end %>
-</ul>
-
+<% if @museum.paintings.any? %>
 Liste des oeuvres que ce musée héberge : 
+	<ul>
+		<% @museum.paintings.each do |painting| %>
+			<li><%= render 'paintings/show', :painting => painting %> </li>
+		<% end %>
+	</ul>
+<% end %>
 
-<ul>
-	<% @museum.paintings.each do |painting| %>
-		<li><%= render 'paintings/show', :painting => painting %> </li>
-	<% end %>
-</ul>
-
-<%= link_to "Modifier le musée ci-dessus", url_for(action: 'edit', id: @museum)%><br/>
-<%= button_to "Détruire le musée ci-dessus", {action: 'destroy', id: @museum}, method: :delete, data: { confirm: "Are you sure?" } %><br/>
+<%= link_to "Modifier le musée ci-dessus", url_for(action: 'edit', id: @museum), class: "btn btn-link"%><br/>
+<%= button_to "Détruire le musée ci-dessus", {action: 'destroy', id: @museum}, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-link" %><br/>
 
 

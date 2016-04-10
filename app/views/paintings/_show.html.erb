@@ -1,6 +1,4 @@
-<%= painting.inspect.to_s %><br/>
-<%= link_to "Voir la fiche de plus près...", painting%><br/>
-<%= link_to "Modifier la fiche ci-dessus", url_for(controller: 'paintings', action: 'edit', id: painting)%><br/>
-<%= button_to "Détruire la fiche ci-dessus", {controller: 'paintings', action: 'destroy', id: painting}, method: :delete, data: { confirm: "Are you sure?" } %><br/>
+<%= link_to painting.title.to_s, painting %> (<%= painting.has_accurate_date ? (painting.circa ? "Circa "+painting.year.to_s : painting.year.to_s ) : (painting.period.to_s) %>)<br/>
+
 
 

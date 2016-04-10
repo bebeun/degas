@@ -1,6 +1,4 @@
-<%= museum.inspect.to_s %><br/>
-<%= link_to "Voir le musée de plus près...", museum%><br/>
-<%= link_to "Modifier le musée ci-dessus", url_for(controller: 'museums', action: 'edit', id: museum)%><br/>
-<%= button_to "Détruire le musée ci-dessus", {controller: 'museums', action: 'destroy', id: museum}, method: :delete, data: { confirm: "Are you sure?" } %><br/>
+<%= link_to museum.full_display, museum %> 
+
 
 

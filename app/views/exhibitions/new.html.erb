@@ -1,5 +1,7 @@
 <% provide(:title, "Nouvelle Exposition") %>
-<h2>Création d'une nouvelle exposition...</h2>
+<div class="page-header">
+<h2>Création d'une nouvelle expo...</h2>
+</div>
 
 <%= form_for @exhibition do |f| %>
 
@@ -12,30 +14,35 @@
 			</ul>
 		<% end %>
 		
-		<div class="field">
-			<%= f.label "Musée où a eu lieu l'exposition" %> <br />
-			<%= f.collection_select(:museum_id, Museum.all, :id, :full_display, :prompt=>"Sélectionner le musée...")  %> <br />	
+		<div class="field form-group">
+			<%= f.label(:museum_id, "Musée de l'exposition", class: "col-md-4 control-label" ) %>	
+			<div class="col-sm-8"><%= f.collection_select(:museum_id, Museum.all, :id, :full_display, {prompt: "Sélectionner le musée..."}, {class: "form-control"})  %></div>
 		</div>
+		<br/><br/>
 		
-		<div class="field">
-			"Date de l'expo" 
-			<%= f.label :year %> <br />
-			<%= f.select :year, (1860..2015), :prompt=>"Date de l'expo..." %> <br />
+		<div class="field form-group">
+			<%= f.label(:year, "Date de l'exposition", class: "col-sm-4 control-label"  ) %>	
+			<div class="col-sm-8"><%= f.select :year, (1860..2016), {prompt: "Date de l'oeuvre..."}, {class: "form-control"}  %></div>
+		</div>	
+		<br/><br/>	
+
+		<div class="field form-group">
+			<%= f.label(:number, "Numéro de l'expo si nécessaire (plusieurs expos dans la même musée sur cette année ou période)", class: "col-sm-4 control-label"  ) %>	
+			<div class="col-sm-8">			
+				<%= f.number_field :number, class: "form-control"%>
+			</div >
 		</div>
-		
-		<div class="field">
-			"Numéro de l'expo si nécessaire (plusieurs expos dans la même musée sur cette année ou période)"
-			<%= f.label :number %><br />
-			<%= f.number_field :number %><br />
-		</div>
-		
-		<div class="field">
-			"Remarques ou nom de l'expo"
-			<%= f.label :remark %><br />
-			<%= f.text_area :remark %><br />
-		</div>
+		<br/><br/>
+
+		<div class="field form-group">
+			<%= f.label(:remark, "Remarques ou nom de l'expo", class: "col-sm-4 control-label") %>
+			<div class="col-sm-8">		
+				<%= f.text_field :remark, class: "form-control" %>
+			</div >
+		</div >
+		<br/><br/>
 		
 
-	<%= f.submit "Créer l'expo" %>
+	<%= f.submit "Créer l'expo", class: "btn btn-primary" %>
 <% end %>
 

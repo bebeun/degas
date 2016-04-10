@@ -1,16 +1,21 @@
 <% provide(:title, "Expo") %>
-<h2>Voici l'expo...</h2><br/>
+<div class="page-header">
+<h2><%= @exhibition.museum.full_display %>(<%= @exhibition.year%>)</h2>
+</div>
 
-<%= @exhibition.inspect.to_s %><br/>
-Liste des fiches exposées dans cette expo : 
-<ul>
-	<% @exhibition.paintings.each do |painting| %>
-		<li><%= render 'paintings/show', :painting => painting %> </li>
-	<% end %>
-</ul>
+<% if !@exhibition.number.nil? %>Exposition numéro <%= @exhibition.number.to_s %><br/><% end %>
+<% if !@exhibition.remark.nil? %>Remarques sur l'expo : <%= @exhibition.remark.to_s %><br/><% end %>
 
+<% if @exhibition.paintings.any? %>
+Liste des oeuvres exposées dans cette expo : 
+	<ul>
+		<% @exhibition.paintings.each do |painting| %>
+			<li><%= render 'paintings/show', :painting => painting %> </li>
+		<% end %>
+	</ul>
+<% end %>
 
-<%= link_to "Modifier l'expo ci-dessus", url_for(action: 'edit', id: @exhibition)%><br/>
-<%= button_to "Détruire l'expo ci-dessus", {action: 'destroy', id: @exhibition}, method: :delete, data: { confirm: "Are you sure?" } %><br/>
+<%= link_to "Modifier l'expo ci-dessus", url_for(action: 'edit', id: @exhibition),  class: "btn btn-link"%><br/>
+<%= button_to "Détruire l'expo ci-dessus", {action: 'destroy', id: @exhibition}, method: :delete, data: { confirm: "Are you sure?" },  class: "btn btn-link" %><br/>
 
 

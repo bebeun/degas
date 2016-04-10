@@ -1,16 +1,29 @@
 <% provide(:title, "Fiche") %>
-<h2>Voici la fiche...</h2><br/>
-
-<%= @painting.inspect.to_s %><br/>
-Liste des expositons où cette fiche apparaît : 
+<div class="page-header">
+<h2><%= @painting.title %></h2>
+</div>
 
 <ul>
-	<% @painting.exhibitions.each do |exhibition| %>
-		<li><%= render 'exhibitions/show', :exhibition => exhibition %> </li>
-	<% end %>
+	<li>Cette fiche est accessible dans la fichier : <%= @painting.number%>.doc </li>
+	<li>Datation de l'oeuvre : <%= @painting.has_accurate_date ? (@painting.circa ? "Circa "+@painting.year.to_s : @painting.year.to_s ) : (@painting.period.to_s) %></li>
+	<li>Technique : <%= @painting.technique %></li>
+	<li>Cachet : <%= @painting.cachet %></li>
+	<li>Localisation : <%= @painting.localisation %></li>
+	<% if @painting.localisation == "Musée" %><li>Musée de localisation : <%= @painting.museum.full_display %></li><% end %>
+
+<% if @painting.exhibitions.any? %>
+	<li>Liste des expositons où cette fiche apparaît : 
+		<ul>
+			<% @painting.exhibitions.each do |exhibition| %>
+				<li><%= render 'exhibitions/show', :exhibition => exhibition %> </li>
+			<% end %>
+		</ul>
+	</li>
+<% end %>	
 </ul>
 
-<%= link_to "Modifier la fiche ci-dessus", url_for(action: 'edit', id: @painting)%><br/>
-<%= button_to "Détruire la fiche ci-dessus", {action: 'destroy', id: @painting}, method: :delete, data: { confirm: "Are you sure?" } %><br/>
+
+<%= link_to "Modifier la fiche ci-dessus", url_for(action: 'edit', id: @painting),  class: "btn btn-link"%><br/>
+<%= button_to "Détruire la fiche ci-dessus", {action: 'destroy', id: @painting}, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-link" %><br/>
 
 
