@@ -2,8 +2,9 @@
 <div class="page-header">
 <h2>Création d'une nouvelle fiche...</h2>
 </div>
+
 <div class="container">
-	<%= form_for(@painting, html: {class: 'form'})  do |f| %>
+	<%= form_for(@painting, multipart: true, html: {class: 'form'})  do |f| %>
 
 			<% if @painting.errors.any? %>
 				<div id="error_explanation">
@@ -23,7 +24,12 @@
 				</div >
 			</div >
 			<br/><br/>
-			
+
+			 <div class="field">
+    			<%= f.label(:picture,  "Dessin à uploader", class: "col-sm-4 control-label") %>
+    			<%= f.file_field :picture %>
+  			</div>
+			<br/><br/>
 			<div class="field form-group">
 				<%= f.label(:number, "Numéro de l'oeuvre (référence interne Word)", class: "col-sm-4 control-label"  ) %>	
 				<div class="col-sm-8">			

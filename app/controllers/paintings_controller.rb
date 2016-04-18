@@ -55,9 +55,19 @@ class PaintingsController < ApplicationController
 		flash[:success] = "La fiche a été détruite!"
 		redirect_to paintings_path
 	end
-	
+
+	def delete_picture
+		@painting = Painting.find(params[:id_painting])
+		if @painting.picture.destroy
+			@painting.update_attributes(picture: nil)
+		flash[:success] = "La photo a été détruite!"
+		else
+		end
+		redirect_to edit_painting_path(@painting)
+	end
+
 private
 	def painting_params
-    	params.require(:painting).permit(:title, :localisation, :number, :technique, :cachet, :has_accurate_date, :year, :circa, :period, :museum_id, exhibition_ids: [])
+    	params.require(:painting).permit(:title, :picture, :localisation, :number, :technique, :cachet, :has_accurate_date, :year, :circa, :period, :museum_id, exhibition_ids: [])
 	end
 end

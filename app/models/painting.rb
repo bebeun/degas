@@ -1,6 +1,10 @@
 class Painting < ActiveRecord::Base
 	validates :title, presence: true
 	validates :number, presence: true, uniqueness: true
+
+	has_attached_file :picture
+	validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
+	before_destroy { |painting| painting.picture.destroy }
 	
 	validates :technique, presence: true
 	validates_inclusion_of :technique, :in => ["Huile sur toile", "Huile sur papier", "Huile sur panneau", "Huile sur carton", "Huile sur autre", "Pastel sur papier", "Pastel sur autre", "Mixte sur toile", "Mixte sur papier", "Mixte sur autre", "Pastel et fusain"]
@@ -32,7 +36,6 @@ class Painting < ActiveRecord::Base
 	
 	def should_have_museum
 		return self.localisation == "Musée"
-		
 	end
 
 end

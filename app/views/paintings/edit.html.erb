@@ -1,6 +1,11 @@
 <% provide(:title, "Edition d'une fiche") %>
 <h2>Edition d'une fiche...</h2>
 
+<% if @painting.picture.present? %>
+	<%= image_tag @painting.picture.url, height: '320' %>
+	<%= button_to "Détruire cette photo", { controller: 'paintings', action: 'delete_picture'}, params: {id_painting: @painting.id}, method: :delete, data: { confirm: "Are you sure?" } %><br/>
+<% end %>	
+
 <%= form_for @painting do |f| %>
 
 		<% if @painting.errors.any? %>
@@ -12,14 +17,22 @@
 			</ul>
 		<% end %>
 		
-					<div class="field form-group">
+			<div class="field form-group">
 				<%= f.label(:title, "Titre de l'oeuvre", class: "col-sm-4 control-label") %>
 				<div class="col-sm-8">		
 					<%= f.text_field :title, class: "form-control" %>
 				</div >
 			</div >
 			<br/><br/>
-			
+
+			<% if !@painting.picture.present? %>
+	 			<div class="field">
+	    			<%= f.label(:picture,  "Dessin à uploader", class: "col-sm-4 control-label") %>
+	    			<%= f.file_field :picture %>
+	  			</div>
+				<br/><br/>
+			<% end %>
+
 			<div class="field form-group">
 				<%= f.label(:number, "Numéro de l'oeuvre (référence interne Word)", class: "col-sm-4 control-label"  ) %>	
 				<div class="col-sm-8">			

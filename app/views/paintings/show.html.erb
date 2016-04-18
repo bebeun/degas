@@ -3,6 +3,7 @@
 <h2><%= @painting.title %></h2>
 </div>
 
+<%= image_tag @painting.picture.url, height: '320' %>
 <ul>
 	<li>Cette fiche est accessible dans la fichier : <%= @painting.number%>.doc </li>
 	<li>Datation de l'oeuvre : <%= @painting.has_accurate_date ? (@painting.circa ? "Circa "+@painting.year.to_s : @painting.year.to_s ) : (@painting.period.to_s) %></li>

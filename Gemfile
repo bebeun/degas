@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
+gem 'paperclip'
+gem 'aws-sdk', '< 2.0'
+gem "figaro"
 
 gem 'rails', '4.2.3'
 gem 'pg'

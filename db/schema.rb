@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123171925) do
+ActiveRecord::Schema.define(version: 20160417221330) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "exhibitions", force: :cascade do |t|
     t.integer  "year"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160123171925) do
     t.string   "remark"
   end
 
-  add_index "exhibitions", ["museum_id"], name: "index_exhibitions_on_museum_id"
+  add_index "exhibitions", ["museum_id"], name: "index_exhibitions_on_museum_id", using: :btree
 
   create_table "exhibitions_paintings", force: :cascade do |t|
     t.datetime "created_at",    null: false
@@ -31,8 +34,8 @@ ActiveRecord::Schema.define(version: 20160123171925) do
     t.integer  "exhibition_id"
   end
 
-  add_index "exhibitions_paintings", ["exhibition_id"], name: "index_exhibitions_paintings_on_exhibition_id"
-  add_index "exhibitions_paintings", ["painting_id"], name: "index_exhibitions_paintings_on_painting_id"
+  add_index "exhibitions_paintings", ["exhibition_id"], name: "index_exhibitions_paintings_on_exhibition_id", using: :btree
+  add_index "exhibitions_paintings", ["painting_id"], name: "index_exhibitions_paintings_on_painting_id", using: :btree
 
   create_table "museums", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -43,8 +46,8 @@ ActiveRecord::Schema.define(version: 20160123171925) do
   end
 
   create_table "paintings", force: :cascade do |t|
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.boolean  "has_accurate_date"
     t.integer  "year"
     t.boolean  "circa"
@@ -55,8 +58,16 @@ ActiveRecord::Schema.define(version: 20160123171925) do
     t.string   "cachet"
     t.integer  "museum_id"
     t.string   "localisation"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
-  add_index "paintings", ["museum_id"], name: "index_paintings_on_museum_id"
+  add_index "paintings", ["museum_id"], name: "index_paintings_on_museum_id", using: :btree
 
+  add_foreign_key "exhibitions", "museums"
+  add_foreign_key "exhibitions_paintings", "exhibitions"
+  add_foreign_key "exhibitions_paintings", "paintings"
+  add_foreign_key "paintings", "museums"
 end
