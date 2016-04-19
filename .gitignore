@@ -20,4 +20,4 @@
 /config/application.yml
 
 # Ignore application_controller because of the passwords credentials 
-/controllers/application_controller.rb'
+# /controllers/application_controller.rb'
