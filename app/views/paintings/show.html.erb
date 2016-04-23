@@ -6,6 +6,8 @@
 <%= image_tag @painting.picture.url, height: '320' %>
 <ul>
 	<li>Cette fiche est accessible dans la fichier : <%= @painting.number%>.doc </li>
+	<li>Carton: <%= @painting.carton.html_safe %></li>
+	<li>Description: <%= @painting.description.html_safe %></li>
 	<li>Datation de l'oeuvre : <%= @painting.has_accurate_date ? (@painting.circa ? "Circa "+@painting.year.to_s : @painting.year.to_s ) : (@painting.period.to_s) %></li>
 	<li>Technique : <%= @painting.technique %></li>
 	<li>Cachet : <%= @painting.cachet %></li>

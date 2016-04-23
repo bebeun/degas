@@ -1,0 +1,13 @@
+<% provide(:title, "Recherche de fiche") %>
+<div class="page-header">
+<h3>==>On cherche "<%=@query%>" parmi les fiches (dans le titre, le carton ou la description)</h3>
+</div>
+
+<ul>
+<% @paintings.each do |painting| %>
+	<li><%= render 'show', :painting => painting %> </li>
+<% end %>
+</ul>
+
+
+

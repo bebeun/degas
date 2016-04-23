@@ -25,9 +25,25 @@
 			</div >
 			<br/><br/>
 
+			<div class="field form-group">
+				<%= f.label(:carton, "Carton", class: "col-sm-4 control-label") %>
+				<div class="col-sm-8">		
+					<%= f.bootsy_area :carton, editor_options: { image: false }, class: "form-control" %>
+				</div >
+			</div >
+			<br/><br/><br/><br/><br/><br/>
+
+			<div class="field form-group">
+				<%= f.label(:description, "Description", class: "col-sm-4 control-label") %>
+				<div class="col-sm-8">		
+					<%= f.bootsy_area :description, editor_options: { image: false }, class: "form-control" %>
+				</div >
+			</div >
+			<br/><br/>
+
 			 <div class="field">
     			<%= f.label(:picture,  "Dessin à uploader", class: "col-sm-4 control-label") %>
-    			<%= f.file_field :picture %>
+    			<%= f.file_field :picture, class: "btn " %>
   			</div>
 			<br/><br/>
 			<div class="field form-group">

@@ -2,6 +2,15 @@ class PaintingsController < ApplicationController
 	def index
 		@paintings = Painting.all
 	end
+
+	def search
+		@paintings = [];
+		@query = params[:q]
+
+		Painting.all.each do |painting|
+			@paintings << painting if painting.title.downcase.include?(params[:q].downcase) || painting.carton.downcase.include?(params[:q].downcase) || painting.description.downcase.include?(params[:q].downcase)
+		end
+	end
 	
 	def new
 		number = Painting.count !=0 ? Painting.all.collect{|p| p.number.to_i}.max + 1 : 1
@@ -68,6 +77,6 @@ class PaintingsController < ApplicationController
 
 private
 	def painting_params
-    	params.require(:painting).permit(:title, :picture, :localisation, :number, :technique, :cachet, :has_accurate_date, :year, :circa, :period, :museum_id, exhibition_ids: [])
+    	params.require(:painting).permit(:carton, :description, :title, :picture, :localisation, :number, :technique, :cachet, :has_accurate_date, :year, :circa, :period, :museum_id, exhibition_ids: [])
 	end
 end
