@@ -28,7 +28,7 @@
 			<div class="field form-group">
 				<%= f.label(:carton, "Carton", class: "col-sm-4 control-label") %>
 				<div class="col-sm-8">		
-					<%= f.bootsy_area :carton, editor_options: { image: false }, class: "form-control" %>
+					<%= f.bootsy_area :carton, editor_options: { image: false, link: false, color: false}, class: "form-control", rows: "8"%>
 				</div >
 			</div >
 			<br/><br/>
@@ -36,7 +36,7 @@
 			<div class="field form-group">
 				<%= f.label(:description, "Description", class: "col-sm-4 control-label") %>
 				<div class="col-sm-8">		
-					<%= f.bootsy_area :description, editor_options: { image: false }, class: "form-control" %>
+					<%= f.bootsy_area :description, editor_options: { image: false, link: false, color: false}, class: "form-control", rows: "8" %>
 				</div >
 			</div >
 			<br/><br/>
@@ -49,6 +49,7 @@
 				<br/><br/>
 			<% end %>
 
+
 			<div class="field form-group">
 				<%= f.label(:number, "Numéro de l'oeuvre (référence interne Word)", class: "col-sm-4 control-label"  ) %>	
 				<div class="col-sm-8">			
@@ -58,12 +59,21 @@
 			<br/><br/>
 
 			<div class="field form-group">
+				<%= f.label(:lemoisne, "Numéro Lemoisne (éventuel)", class: "col-sm-4 control-label"  ) %>	
+				<div class="col-sm-8">			
+					<%= f.number_field :lemoisne, class: "form-control"%>
+				</div >
+			</div>
+			<br/><br/>
+
+
+			<div class="field form-group">
 				<%= f.label(:has_accurate_date, "Datation de l'oeuvre :", class: "col-sm-4 control-label"  ) %>
-	 			<div class="col-sm-8 btn-group" data-toggle="buttons">
-					<%= f.label(:has_accurate_date, "Date précise", class: "btn btn-primary col-sm-6 "  ) do %>	
+	 			<div class="col-sm-8" data-toggle="buttons">
+					<%= f.label(:has_accurate_date, "Date précise"  ) do %>	
 						<%= f.radio_button :has_accurate_date, 'true' %> Année
 					<% end %>
-					<%= f.label(:has_accurate_date, "Période", class: "btn btn-primary col-sm-6"  ) do %>	
+					<%= f.label(:has_accurate_date, "Période" ) do %>	
 						<%= f.radio_button :has_accurate_date, 'false' %> Période
 					<% end %>
 	  			</div>
@@ -73,11 +83,11 @@
 
 				<div class="field form-group">
 					<%= f.label(:circa, "Si datation sur une année :", class: "col-sm-4 control-label"  ) %>
-		 			<div class="col-sm-8 btn-group" data-toggle="buttons">
-						<%= f.label(:circa, "Date précise", class: "btn btn-primary col-sm-6 "  ) do %>	
+		 			<div class="col-sm-8" data-toggle="buttons">
+						<%= f.label(:circa, "Date précise"  ) do %>	
 							<%= f.radio_button :circa, 'true' %> Année circa
 						<% end %>
-						<%= f.label(:circa, "Période", class: "btn btn-primary col-sm-6"  ) do %>	
+						<%= f.label(:circa, "Période" ) do %>	
 							<%= f.radio_button :circa, 'false' %> Année précise
 						<% end %>
 		  			</div>
@@ -111,13 +121,19 @@
 			<br/><br/>
 
 			<div class="field form-group">
+				<%= f.label(:signature, "Signature", class: "col-md-4 control-label" ) %>	
+				<div class="col-sm-8"><%= f.select :signature, ["Signé", "Non signé", "Invisible"] , {prompt: "Signature..."}, {class: "form-control"}  %></div> 
+			</div>
+			<br/><br/>
+
+			<div class="field form-group">
 				<%= f.label(:localisation, "Localisation", class: "col-md-4 control-label" ) %>	
 				<div class="col-sm-8"><%= f.select :localisation, ["Musée", "Collection Particulière", "Inconnu"], {prompt: "Localisation..."}, {class: "form-control"} %> </div>
 			</div>
 			<br/><br/>
 
 			<div class="field form-group">
-				<%= f.label(:museum_id, "Musée", class: "col-md-4 control-label" ) %>	
+				<%= f.label(:museum_id, "Musée actuel", class: "col-md-4 control-label" ) %>	
 				<div class="col-sm-8"><%= f.collection_select(:museum_id, Museum.all, :id, :full_display, {prompt: "Sélectionner le musée..."}, {class: "form-control"})  %></div>
 			</div>
 			<br/><br/>

@@ -8,7 +8,7 @@ Ville du musée : <%= @museum.city %><br/>
 <% if @museum.exhibitions.any? %>
 Liste des expositons que ce musée a hébergée : 
 	<ul>
-		<% @museum.exhibitions.each do |exhibition| %>
+		<% @museum.exhibitions.sort_by{|e| e.year}.each do |exhibition| %>
 			<li><%= render 'exhibitions/show', :exhibition => exhibition %> </li>
 		<% end %>
 	</ul>
@@ -17,7 +17,7 @@ Liste des expositons que ce musée a hébergée :
 <% if @museum.paintings.any? %>
 Liste des oeuvres que ce musée héberge : 
 	<ul>
-		<% @museum.paintings.each do |painting| %>
+		<% @museum.paintings.sort_by{|e| e.sort_date}.each do |painting| %>
 			<li><%= render 'paintings/show', :painting => painting %> </li>
 		<% end %>
 	</ul>

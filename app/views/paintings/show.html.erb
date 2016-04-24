@@ -3,14 +3,16 @@
 <h2><%= @painting.title %></h2>
 </div>
 
-<%= image_tag @painting.picture.url, height: '320' %>
+<%= image_tag @painting.picture.url, height: '200' %>
 <ul>
 	<li>Cette fiche est accessible dans la fichier : <%= @painting.number%>.doc </li>
 	<li>Carton: <%= @painting.carton.html_safe %></li>
 	<li>Description: <%= @painting.description.html_safe %></li>
+    <% if !@painting.lemoisne.nil? %> <li>Lemoisne : <%= @painting.lemoisne %></li><% end %>
 	<li>Datation de l'oeuvre : <%= @painting.has_accurate_date ? (@painting.circa ? "Circa "+@painting.year.to_s : @painting.year.to_s ) : (@painting.period.to_s) %></li>
 	<li>Technique : <%= @painting.technique %></li>
 	<li>Cachet : <%= @painting.cachet %></li>
+	<li>Signature : <%= @painting.cachet %></li>
 	<li>Localisation : <%= @painting.localisation %></li>
 	<% if @painting.localisation == "Musée" %><li>Musée de localisation : <%= @painting.museum.full_display %></li><% end %>
 

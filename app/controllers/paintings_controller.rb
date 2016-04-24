@@ -1,6 +1,6 @@
 class PaintingsController < ApplicationController
 	def index
-		@paintings = Painting.all
+		@paintings = Painting.all.sort_by{|e| e.sort_date}
 	end
 
 	def search
@@ -10,6 +10,7 @@ class PaintingsController < ApplicationController
 		Painting.all.each do |painting|
 			@paintings << painting if painting.title.downcase.include?(params[:q].downcase) || painting.carton.downcase.include?(params[:q].downcase) || painting.description.downcase.include?(params[:q].downcase)
 		end
+		@paintings = @paintings.sort_by{|e| e.sort_date}
 	end
 	
 	def new
@@ -77,6 +78,6 @@ class PaintingsController < ApplicationController
 
 private
 	def painting_params
-    	params.require(:painting).permit(:carton, :description, :title, :picture, :localisation, :number, :technique, :cachet, :has_accurate_date, :year, :circa, :period, :museum_id, exhibition_ids: [])
+    	params.require(:painting).permit(:signature, :carton, :lemoisne, :description, :title, :picture, :localisation, :number, :technique, :cachet, :has_accurate_date, :year, :circa, :period, :museum_id, exhibition_ids: [])
 	end
 end
