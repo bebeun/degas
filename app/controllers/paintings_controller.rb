@@ -78,6 +78,6 @@ class PaintingsController < ApplicationController
 
 private
 	def painting_params
-    	params.require(:painting).permit(:signature, :carton, :lemoisne, :description, :title, :picture, :localisation, :number, :technique, :cachet, :has_accurate_date, :year, :circa, :period, :museum_id, exhibition_ids: [])
+    	params.require(:painting).permit(:height, :width, :unit, :signature, :carton, :lemoisne, :description, :title, :picture, :localisation, :number, :technique, :cachet, :has_accurate_date, :year, :circa, :period, :museum_id, exhibition_ids: [])
 	end
 end
