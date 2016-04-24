@@ -14,6 +14,7 @@
 	<li>Cachet : <%= @painting.cachet %></li>
 	<li>Signature : <%= @painting.cachet %></li>
 	<li>Localisation : <%= @painting.localisation %></li>
+	<li>Hauteur * Largeur : <%=@painting.heigth %>*<%=@painting.width %> cms soit <%= @heigth_inch %>*<%= @width_inch %> inchs</li>
 	<% if @painting.localisation == "Musée" %><li>Musée de localisation : <%= @painting.museum.full_display %></li><% end %>
 
 <% if @painting.exhibitions.any? %>

@@ -143,6 +143,20 @@
 				<div class="col-sm-8"><%= f.collection_select(:exhibition_ids, Exhibition.all, :id, :full_display, {}, {multiple: true, class: "form-control"})  %> </div>
 			</div>
 
+			<div class="field form-group">
+				<%= f.label(:heigth, "Hauteur en Cms", class: "col-sm-4 control-label"  ) %>	
+				<div class="col-sm-8">			
+					<%= f.number_field :heigth, class: "form-control"%>
+				</div >
+			</div>
+
+			<div class="field form-group">
+				<%= f.label(:width, "Largeur en Cms", class: "col-sm-4 control-label"  ) %>	
+				<div class="col-sm-8">			
+					<%= f.number_field :width, class: "form-control"%>
+				</div >
+			</div>
+
 	<%= f.submit "Mettre à jour la fiche", class: "btn btn-default" %>
 <% end %>
 
